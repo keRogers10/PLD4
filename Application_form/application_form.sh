@@ -17,7 +17,12 @@ create_form() {
     read -p "Enter Destination Country: " destination
     read -p "Enter Attachments: " attachments
 
-    echo "$national_id,$age,$residence_country,$birth_country,$phone_number,$email,$reason,$purpose,$destination,$attachments" >> "$file_name"
+    echo "
+    National ID:$national_id,  Age:$age,
+    Residence Country:$residence_country,  Birth Country$birth_country,
+    Phone Number:$phone_number,  Email:$email,
+    Reason for the Application:$reason,  Purpose of Travel:$purpose,
+    Destination Country:$destination,  Attachments:$attachments" >> "$file_name"
     echo "Form created successfully!"
 }
 
@@ -47,6 +52,7 @@ while true; do
     echo "1. Passport Application"
     echo "2. Laissez-passer Application"
     echo "3. Visa Application"
+    echo "5. Search for your application"
     echo "4. Exit"
     read -p "Enter your choice: " choice
 
@@ -63,6 +69,9 @@ while true; do
             file_name="Visa_form001.txt"
             create_form
             ;;
+	5)
+            read -p "Enter National ID to search: " search_national_id
+    		grep "$search_national_id" "passport_form001.txt" "laissez-passer_form001.txt" "Visa_form001.txt";;
         4)
             echo "Exiting the application."
             exit
